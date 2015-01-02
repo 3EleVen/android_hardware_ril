@@ -367,6 +367,9 @@ typedef struct {
 } RIL_Dial;
 
 typedef struct {
+#ifdef RIL_SUPPORTS_SEEK
+    int cla;
+#endif
     int command;    /* one of the commands listed for TS 27.007 +CRSM*/
     int fileid;     /* EF id */
     char *path;     /* "pathid" from TS 27.007 +CRSM command.
@@ -381,6 +384,9 @@ typedef struct {
 } RIL_SIM_IO_v5;
 
 typedef struct {
+#ifdef RIL_SUPPORTS_SEEK
+    int cla;
+#endif
     int command;    /* one of the commands listed for TS 27.007 +CRSM*/
     int fileid;     /* EF id */
     char *path;     /* "pathid" from TS 27.007 +CRSM command.
@@ -3989,6 +3995,8 @@ typedef struct {
  */
 #define RIL_REQUEST_ALLOW_DATA  123
 
+#define RIL_REQUEST_SIM_TRANSMIT_BASIC 117
+
 /**
  * RIL_REQUEST_GET_HARDWARE_CONFIG
  *
@@ -4056,6 +4064,9 @@ typedef struct {
  *  SUCCESS must not fail
  */
 #define RIL_REQUEST_SET_DC_RT_INFO_RATE 127
+
+
+#define RIL_REQUEST_SIM_TRANSMIT_CHANNEL 120
 
 /**
  * RIL_REQUEST_SET_DATA_PROFILE
